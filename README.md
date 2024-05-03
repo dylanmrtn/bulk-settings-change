@@ -1,4 +1,4 @@
-# Dynatrace App
+# Dynatrace Bulk Settings Change App
 
 This application was developed using Dynatrace AppEngine. This app is to be used for applying Dynatrace Settings 2.0 configurations across a bulk number of entities at once.
 
