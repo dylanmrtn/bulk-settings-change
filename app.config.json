@@ -1,10 +1,16 @@
 {
   "environmentUrl": "https://hwz97639.sprint.apps.dynatracelabs.com/",
   "app": {
-    "name": "bulk-settings-change",
-    "version": "0.0.0",
-    "description": "A starting project with routing, fetching data, and charting",
+    "name": "Bulk Settings Change",
+    "version": "1.0.0",
+    "description": "Apply settings 2.0 changes in bulk across multiple entities.",
     "id": "my.bulk.settings.change",
-    "scopes": [{ "name": "storage:logs:read", "comment": "default template" }, { "name": "storage:buckets:read", "comment": "default template" }]
+    "scopes": [
+      { "name": "storage:logs:read", "comment": "default template" },
+      { "name": "storage:buckets:read", "comment": "default template" },
+      { "name": "environment-api:entities:read", "comment": "read entities" },
+      { "name": "settings:schemas:read", "comment": "read schemas" },
+      { "name": "settings:objects:write", "comment": "write settings" }
+    ]
   }
 }

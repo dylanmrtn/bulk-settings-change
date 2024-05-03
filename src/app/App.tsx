@@ -1,9 +1,9 @@
-import { Page } from '@dynatrace/strato-components-preview';
+import { Page, ToastContainer } from '@dynatrace/strato-components-preview';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Data } from './pages/Data';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
+import { Guide } from './pages/Guide';
 
 export const App = () => {
   return (
@@ -14,9 +14,10 @@ export const App = () => {
       <Page.Main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/data" element={<Data />} />
+          <Route path="/guide" element={<Guide />} />
         </Routes>
       </Page.Main>
+      <ToastContainer />
     </Page>
   );
 };
