@@ -2,7 +2,7 @@
   "environmentUrl": "https://hwz97639.sprint.apps.dynatracelabs.com/",
   "app": {
     "name": "Bulk Settings Change",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Apply settings 2.0 changes in bulk across multiple entities.",
     "id": "my.bulk.settings.change",
     "scopes": [
@@ -11,6 +11,14 @@
       { "name": "environment-api:entities:read", "comment": "read entities" },
       { "name": "settings:schemas:read", "comment": "read schemas" },
       { "name": "settings:objects:write", "comment": "write settings" }
-    ]
+    ],
+    "csp": {
+      "img-src":[
+        {
+          "value": "https://raw.githubusercontent.com",
+          "comment": "allows images from github"
+        }
+      ]
+    }
   }
 }
