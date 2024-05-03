@@ -19,17 +19,17 @@ Provide an entity selector string that returns the entities you want to change t
 
 Select the schema for the setting that you want to change for the entities selected. You can see the schema for a particular setting by either looking in the URL (starts with "builtin"). Or you can click the ... in the upper right corner of the settings page to see the schema info.
 
-![click on schema info](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/Dots-Click-SchemaInfo.png)
+![click on schema info](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/bulk-settings-change-clickSchema.png)
 
-![schema info](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/SchemaInfo.png)
+![schema info](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/bulk-settings-change-schemaInfo.png)
 
 ### 3. Values
 
 To find the values, click on the Dots in the top right corner of your setting and select "API". 
 
-![Click on API](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/Dots-Click-API.png)
+![Click on API](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/bulk-settings-change-clickAPI.png)
 
-![API values](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/API-Values-Example.png)
+![API values](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/bulk-settings-change-APIValues.png)
 
 From the pre-generated API call, grab the values object only. This is what is used in the app.
 
@@ -56,7 +56,7 @@ Value:
 }
 \`\`\`
 
-![All Fields Set](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/AppExample-FinalLook.png)
+![All Fields Set](https://raw.githubusercontent.com/dylanmrtn/bulk-settings-change/main/src/assets/bulk-settings-change-AppExample.png)
 `;
 
 export const Guide = () => {
