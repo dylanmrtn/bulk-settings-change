@@ -1,4 +1,4 @@
-import { Button, Markdown, Paragraph } from "@dynatrace/strato-components-preview";
+import { Button, Markdown } from "@dynatrace/strato-components-preview";
 import { ChevronLeftIcon } from "@dynatrace/strato-icons";
 import React from 'react';
 import { Link } from "react-router-dom";
