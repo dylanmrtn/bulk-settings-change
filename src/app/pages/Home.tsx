@@ -43,11 +43,10 @@ export const Home = () => {
     }
 ]
   const queryEntitySelector = async () => {
-    console.log(entitySelector);
     const data = await monitoredEntitiesClient.getEntities({
-      entitySelector: entitySelector
+      entitySelector: entitySelector,
+      pageSize: 1000
     })
-    console.log(data);
 
   setEntities(data);
   };
@@ -65,8 +64,7 @@ export const Home = () => {
 
   const applySettings = (entities:EntitiesList, schema:string, values:object) => {
 
-    console.log('applying settings');
-    const response = entities?.entities?.forEach((entity) => {
+    entities?.entities?.forEach((entity) => {
       const entityId=entity.entityId ?? '';
       settingsObjectsClient.postSettingsObjects({
         body: [
@@ -78,7 +76,6 @@ export const Home = () => {
         ]
       })
     });
-    console.log(response);
   };
 
   const handleSubmit = () => {
@@ -86,7 +83,6 @@ export const Home = () => {
       setSettingsValuesObject(JSON.parse(settingsValuesText));
       setShowConfirm(true);
     } else {
-      //error message -> complete all fields before sumbit
       showToast({
         type: 'critical',
         title: 'Check Content',
@@ -96,12 +92,10 @@ export const Home = () => {
   }
 
   const handleConfirm = () => {
-    //call function to submit changes via API
     if(!entities) {
       return;
     }
     applySettings(entities, schema, settingsValuesObject)
-    //confirmation message
     setShowConfirm(false);
     showToast({
       title: 'Success!',
@@ -113,7 +107,6 @@ export const Home = () => {
       ),
     })
     handleReset();
-    //then call handleReset()
   }
   
   const handleReset = () => {
