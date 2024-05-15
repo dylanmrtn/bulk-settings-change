@@ -2,7 +2,7 @@
   "environmentUrl": "https://hwz97639.sprint.apps.dynatracelabs.com/",
   "app": {
     "name": "Bulk Settings Change",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "description": "Apply settings 2.0 changes in bulk across multiple entities.",
     "id": "my.bulk.settings.change",
     "scopes": [
