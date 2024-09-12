@@ -1,5 +1,5 @@
 {
-  "environmentUrl": "https://hwz97639.sprint.apps.dynatracelabs.com/",
+  "environmentUrl": "https://lvz97093.sprint.apps.dynatracelabs.com/",
   "app": {
     "name": "Bulk Settings Change",
     "version": "1.0.3",
@@ -20,5 +20,6 @@
         }
       ]
     }
-  }
+  },
+  "icon": ".src/assets/app-icon.png"
 }
