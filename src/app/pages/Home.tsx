@@ -174,7 +174,7 @@ export const Home = () => {
             />
         </Flex>
       </Flex>
-      <Flex id="Submit ALl" width="100%" paddingTop={64}>
+      <Flex id="Submit All" width="100%" paddingTop={64}>
         <Button type="submit" variant="emphasized" width="full" onClick={handleSubmit}>
           Submit
         </Button>
