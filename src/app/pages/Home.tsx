@@ -15,10 +15,10 @@ import {
   TextInput,
   showToast,
 } from '@dynatrace/strato-components-preview';
-import { EntitiesList, monitoredEntitiesClient, SchemaList, settingsObjectsClient} from "@dynatrace-sdk/client-classic-environment-v2"
-import { settingsSchemasClient } from "@dynatrace-sdk/client-classic-environment-v2";
+import { businessEventsClient, EntitiesList, monitoredEntitiesClient, SchemaList, settingsObjectsClient, settingsSchemasClient} from "@dynatrace-sdk/client-classic-environment-v2";
 import { InformationIcon, ResetIcon } from '@dynatrace/strato-icons';
 import { Link } from 'react-router-dom';
+import { getCurrentUserDetails } from '@dynatrace-sdk/app-environment';
 
 
 export const Home = () => {
@@ -29,6 +29,8 @@ export const Home = () => {
   const [settingsValuesText, setSettingsValuesText] = useState<string>('');
   const [settingsValuesObject, setSettingsValuesObject] = useState<object>({});
   const [showConfirm, setShowConfirm] = useState(false);
+
+  const userDetails= getCurrentUserDetails();
 
   const entityColumns: TableColumn[] = [
     {
@@ -95,7 +97,8 @@ export const Home = () => {
     if(!entities) {
       return;
     }
-    applySettings(entities, schema, settingsValuesObject)
+    applySettings(entities, schema, settingsValuesObject);
+    sendAudit(userDetails.email, entitySelector, schema, settingsValuesObject);
     setShowConfirm(false);
     showToast({
       title: 'Success!',
@@ -115,6 +118,23 @@ export const Home = () => {
     setSchema('');
     setSettingsValuesText('');
     setSettingsValuesObject({});
+  }
+
+  const sendAudit = async (user: string, entitySelector: string, schema: string, value: object) => {
+
+    await businessEventsClient.ingest({
+      type: "application/json; charset=utf-8",
+      body: {
+        id: "1",
+        "event.provider": "bulk.settings.change",
+        "event.type": "settings.change",
+        user: user,
+        entitySelector: entitySelector,
+        entities: entities,
+        schema: schema,
+        value: value
+      }
+    });
   }
 
   return (

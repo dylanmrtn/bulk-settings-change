@@ -10,7 +10,8 @@
       { "name": "storage:buckets:read", "comment": "default template" },
       { "name": "environment-api:entities:read", "comment": "read entities" },
       { "name": "settings:schemas:read", "comment": "read schemas" },
-      { "name": "settings:objects:write", "comment": "write settings" }
+      { "name": "settings:objects:write", "comment": "write settings" },
+      { "name": "storage:events:write", "comment": "write audit events" }
     ],
     "csp": {
       "img-src":[
