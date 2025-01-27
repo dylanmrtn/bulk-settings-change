@@ -130,7 +130,8 @@ export const Home = () => {
         "event.type": "settings.change",
         user: user,
         entitySelector: entitySelector,
-        entities: entities,
+        entities: entities?.entities,
+        entitiesCount: entities?.totalCount,
         schema: schema,
         value: value
       }
