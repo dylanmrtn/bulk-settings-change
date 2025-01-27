@@ -9,3 +9,7 @@ This application was developed using Dynatrace AppEngine. This app is to be used
 2. edit **app.config.ts**. 
      - Change the *name, version, and id* fields to your own unique values.
 3. In the project directory run `npm run deploy` to deploy it your environment.
+
+## Setup Dashboard
+Use this ready-made dashboard to monitor the usage off this custom app in your environment.
+![Dashboard](./src/assets/dashboard.png)
