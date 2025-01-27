@@ -1,0 +1,809 @@
+{
+  "version": 16,
+  "variables": [],
+  "tiles": {
+    "0": {
+      "type": "data",
+      "title": "",
+      "query": "fetch bizevents\n| filter event.provider == \"bulk.settings.change\"\n| summarize count=count()",
+      "davis": { "enabled": false, "davisVisualization": { "isAvailable": true } },
+      "visualization": "singleValue",
+      "visualizationSettings": {
+        "thresholds": [],
+        "chartSettings": {
+          "xAxisScaling": "analyzedTimeframe",
+          "gapPolicy": "gap",
+          "circleChartSettings": {
+            "groupingThresholdType": "relative",
+            "groupingThresholdValue": 0,
+            "valueType": "relative"
+          },
+          "categoryOverrides": {},
+          "curve": "linear",
+          "pointsDisplay": "auto",
+          "categoricalBarChartSettings": {
+            "layout": "horizontal",
+            "categoryAxisTickLayout": "horizontal",
+            "scale": "absolute",
+            "groupMode": "stacked",
+            "colorPaletteMode": "multi-color",
+            "categoryAxis": ["count"],
+            "categoryAxisLabel": "count",
+            "valueAxis": ["count"],
+            "valueAxisLabel": "count",
+            "tooltipVariant": "single"
+          },
+          "colorPalette": "categorical",
+          "valueRepresentation": "absolute",
+          "truncationMode": "middle"
+        },
+        "singleValue": {
+          "showLabel": true,
+          "label": "Runs",
+          "prefixIcon": "SettingIcon",
+          "recordField": "count",
+          "autoscale": true,
+          "alignment": "center",
+          "trend": { "trendType": "auto", "isVisible": true },
+          "colorThresholdTarget": "value",
+          "isIconVisible": true
+        },
+        "table": {
+          "rowDensity": "condensed",
+          "enableSparklines": false,
+          "hiddenColumns": [],
+          "linewrapEnabled": false,
+          "lineWrapIds": [],
+          "monospacedFontEnabled": false,
+          "monospacedFontColumns": [],
+          "columnWidths": {},
+          "columnTypeOverrides": []
+        },
+        "honeycomb": {
+          "shape": "hexagon",
+          "legend": { "hidden": false, "position": "auto" },
+          "displayedFields": [],
+          "dataMappings": {},
+          "truncationMode": "middle",
+          "colorMode": "color-palette",
+          "colorPalette": "categorical"
+        },
+        "histogram": {
+          "legend": "auto",
+          "yAxis": { "label": "Frequency", "scale": "linear" },
+          "colorPalette": "categorical",
+          "dataMappings": [{ "valueAxis": "count", "rangeAxis": "" }],
+          "variant": "single",
+          "truncationMode": "middle",
+          "displayedFields": []
+        },
+        "autoSelectVisualization": false
+      },
+      "timeframe": { "tileTimeframeEnabled": false, "tileTimeframe": { "from": "now()-2h", "to": "now()" } },
+      "querySettings": {
+        "maxResultRecords": 1000,
+        "defaultScanLimitGbytes": 500,
+        "maxResultMegaBytes": 1,
+        "defaultSamplingRatio": 10,
+        "enableSampling": false
+      }
+    },
+    "1": {
+      "type": "data",
+      "title": "Recent Runs",
+      "query": "fetch bizevents\n| filter event.provider == \"bulk.settings.change\"\n| fields timestamp, user, entitySelector, entitiesCount, entities,schema, value\n| sort timestamp desc",
+      "davis": { "enabled": false, "davisVisualization": { "isAvailable": true } },
+      "visualization": "table",
+      "visualizationSettings": {
+        "thresholds": [],
+        "chartSettings": {
+          "xAxisScaling": "analyzedTimeframe",
+          "gapPolicy": "gap",
+          "circleChartSettings": {
+            "groupingThresholdType": "relative",
+            "groupingThresholdValue": 0,
+            "valueType": "relative"
+          },
+          "categoryOverrides": {},
+          "curve": "linear",
+          "pointsDisplay": "auto",
+          "categoricalBarChartSettings": {
+            "layout": "horizontal",
+            "categoryAxisTickLayout": "horizontal",
+            "scale": "absolute",
+            "groupMode": "stacked",
+            "colorPaletteMode": "multi-color",
+            "categoryAxis": ["user", "entitySelector", "entities", "schema", "value"],
+            "categoryAxisLabel": "user,entitySelector,entities,schema,value",
+            "valueAxis": ["entitiesCount"],
+            "valueAxisLabel": "entitiesCount",
+            "tooltipVariant": "single"
+          },
+          "colorPalette": "categorical",
+          "valueRepresentation": "absolute",
+          "truncationMode": "middle",
+          "fieldMapping": { "timestamp": "timestamp", "leftAxisValues": ["entitiesCount"] },
+          "xAxisLabel": "timestamp",
+          "xAxisIsLabelVisible": false,
+          "hiddenLegendFields": [],
+          "leftYAxisSettings": {}
+        },
+        "singleValue": {
+          "showLabel": true,
+          "label": "timestamp",
+          "prefixIcon": "",
+          "recordField": "timestamp",
+          "autoscale": true,
+          "alignment": "center",
+          "trend": { "trendType": "auto", "isVisible": true },
+          "colorThresholdTarget": "value"
+        },
+        "table": {
+          "rowDensity": "condensed",
+          "enableSparklines": false,
+          "hiddenColumns": [],
+          "linewrapEnabled": false,
+          "lineWrapIds": [],
+          "monospacedFontEnabled": false,
+          "monospacedFontColumns": [],
+          "columnWidths": {},
+          "columnTypeOverrides": []
+        },
+        "honeycomb": {
+          "shape": "hexagon",
+          "legend": { "hidden": false, "position": "auto" },
+          "displayedFields": ["user", "entitySelector", "entities", "schema", "value"],
+          "dataMappings": { "value": "entitiesCount" },
+          "truncationMode": "middle",
+          "colorMode": "color-palette",
+          "colorPalette": "blue"
+        },
+        "histogram": {
+          "legend": "auto",
+          "yAxis": { "label": "Frequency", "scale": "linear" },
+          "colorPalette": "categorical",
+          "dataMappings": [{ "valueAxis": "entitiesCount", "rangeAxis": "" }],
+          "variant": "single",
+          "truncationMode": "middle",
+          "displayedFields": ["entitySelector", "schema", "user"]
+        },
+        "autoSelectVisualization": false
+      },
+      "querySettings": {
+        "maxResultRecords": 1000,
+        "defaultScanLimitGbytes": 500,
+        "maxResultMegaBytes": 1,
+        "defaultSamplingRatio": 10,
+        "enableSampling": false
+      }
+    },
+    "2": {
+      "type": "data",
+      "title": "Runs over time",
+      "query": "fetch bizevents\n| filter event.provider == \"bulk.settings.change\"\n| makeTimeSeries count=count()",
+      "davis": { "enabled": false, "davisVisualization": { "isAvailable": true } },
+      "visualization": "barChart",
+      "visualizationSettings": {
+        "thresholds": [],
+        "chartSettings": {
+          "xAxisScaling": "analyzedTimeframe",
+          "gapPolicy": "gap",
+          "circleChartSettings": {
+            "groupingThresholdType": "relative",
+            "groupingThresholdValue": 0,
+            "valueType": "relative"
+          },
+          "categoryOverrides": {},
+          "curve": "linear",
+          "pointsDisplay": "auto",
+          "categoricalBarChartSettings": {
+            "layout": "horizontal",
+            "categoryAxisTickLayout": "horizontal",
+            "scale": "absolute",
+            "groupMode": "stacked",
+            "colorPaletteMode": "multi-color",
+            "categoryAxis": ["interval"],
+            "categoryAxisLabel": "interval",
+            "valueAxis": ["interval"],
+            "valueAxisLabel": "interval",
+            "tooltipVariant": "single"
+          },
+          "colorPalette": "categorical",
+          "valueRepresentation": "absolute",
+          "truncationMode": "middle",
+          "fieldMapping": { "timestamp": "timeframe", "leftAxisValues": ["count"] },
+          "xAxisLabel": "timeframe",
+          "xAxisIsLabelVisible": false,
+          "hiddenLegendFields": [],
+          "leftYAxisSettings": {}
+        },
+        "singleValue": {
+          "showLabel": true,
+          "label": "jobs ran",
+          "prefixIcon": "",
+          "recordField": "count",
+          "autoscale": true,
+          "alignment": "center",
+          "trend": { "trendType": "auto", "isVisible": true },
+          "colorThresholdTarget": "value"
+        },
+        "table": {
+          "rowDensity": "condensed",
+          "enableSparklines": false,
+          "hiddenColumns": [],
+          "linewrapEnabled": false,
+          "lineWrapIds": [],
+          "monospacedFontEnabled": false,
+          "monospacedFontColumns": [],
+          "columnWidths": {},
+          "columnTypeOverrides": [{ "fields": ["count"], "value": "sparkline", "id": 1738004668166 }]
+        },
+        "honeycomb": {
+          "shape": "hexagon",
+          "legend": { "hidden": false, "position": "auto" },
+          "displayedFields": [],
+          "dataMappings": {},
+          "truncationMode": "middle",
+          "colorMode": "color-palette",
+          "colorPalette": "categorical"
+        },
+        "histogram": {
+          "legend": "auto",
+          "yAxis": { "label": "Frequency", "scale": "linear" },
+          "colorPalette": "categorical",
+          "dataMappings": [{ "valueAxis": "interval", "rangeAxis": "" }],
+          "variant": "single",
+          "truncationMode": "middle",
+          "displayedFields": []
+        },
+        "autoSelectVisualization": false
+      },
+      "timeframe": { "tileTimeframeEnabled": false, "tileTimeframe": { "from": "now()-2h", "to": "now()" } },
+      "querySettings": {
+        "maxResultRecords": 1000,
+        "defaultScanLimitGbytes": 500,
+        "maxResultMegaBytes": 1,
+        "defaultSamplingRatio": 10,
+        "enableSampling": false
+      }
+    },
+    "3": {
+      "type": "data",
+      "title": "By Schema",
+      "query": "fetch bizevents\n| filter event.provider == \"bulk.settings.change\"\n| parse entities, \"JSON_ARRAY:entities\"\n| expand entities\n| summarize distinctEntities=collectDistinct(entities), by:{schema}\n| expand distinctEntities \n| fields schema, name=distinctEntities[displayName], id=distinctEntities[entityId]\n| summarize count=count(),by:{schema}",
+      "davis": { "enabled": false, "davisVisualization": { "isAvailable": true } },
+      "visualization": "pieChart",
+      "visualizationSettings": {
+        "thresholds": [],
+        "chartSettings": {
+          "xAxisScaling": "analyzedTimeframe",
+          "gapPolicy": "gap",
+          "circleChartSettings": {
+            "groupingThresholdType": "relative",
+            "groupingThresholdValue": 0,
+            "valueType": "relative"
+          },
+          "categoryOverrides": {},
+          "curve": "linear",
+          "pointsDisplay": "auto",
+          "categoricalBarChartSettings": {
+            "layout": "horizontal",
+            "categoryAxisTickLayout": "horizontal",
+            "scale": "absolute",
+            "groupMode": "stacked",
+            "colorPaletteMode": "multi-color",
+            "categoryAxis": ["schema"],
+            "categoryAxisLabel": "schema",
+            "valueAxis": ["count"],
+            "valueAxisLabel": "count",
+            "tooltipVariant": "single"
+          },
+          "colorPalette": "categorical",
+          "valueRepresentation": "absolute",
+          "truncationMode": "middle"
+        },
+        "singleValue": {
+          "showLabel": true,
+          "label": "jobs ran",
+          "prefixIcon": "",
+          "recordField": "count",
+          "autoscale": true,
+          "alignment": "center",
+          "trend": { "trendType": "auto", "isVisible": true },
+          "colorThresholdTarget": "value"
+        },
+        "table": {
+          "rowDensity": "condensed",
+          "enableSparklines": false,
+          "hiddenColumns": [],
+          "linewrapEnabled": false,
+          "lineWrapIds": [],
+          "monospacedFontEnabled": false,
+          "monospacedFontColumns": [],
+          "columnWidths": {},
+          "columnTypeOverrides": []
+        },
+        "honeycomb": {
+          "shape": "hexagon",
+          "legend": { "hidden": false, "position": "auto" },
+          "displayedFields": ["schema"],
+          "dataMappings": { "value": "count" },
+          "truncationMode": "middle",
+          "colorMode": "color-palette",
+          "colorPalette": "blue"
+        },
+        "histogram": {
+          "legend": "auto",
+          "yAxis": { "label": "Frequency", "scale": "linear" },
+          "colorPalette": "categorical",
+          "dataMappings": [{ "valueAxis": "count", "rangeAxis": "" }],
+          "variant": "single",
+          "truncationMode": "middle",
+          "displayedFields": ["schema"]
+        },
+        "autoSelectVisualization": false
+      },
+      "timeframe": { "tileTimeframeEnabled": false, "tileTimeframe": { "from": "now()-2h", "to": "now()" } },
+      "querySettings": {
+        "maxResultRecords": 1000,
+        "defaultScanLimitGbytes": 500,
+        "maxResultMegaBytes": 1,
+        "defaultSamplingRatio": 10,
+        "enableSampling": false
+      }
+    },
+    "4": {
+      "type": "data",
+      "title": "By User",
+      "query": "fetch bizevents\n| filter event.provider == \"bulk.settings.change\"\n| summarize count=count(), by:{user}",
+      "davis": { "enabled": false, "davisVisualization": { "isAvailable": true } },
+      "visualization": "pieChart",
+      "visualizationSettings": {
+        "thresholds": [],
+        "chartSettings": {
+          "xAxisScaling": "analyzedTimeframe",
+          "gapPolicy": "gap",
+          "circleChartSettings": {
+            "groupingThresholdType": "relative",
+            "groupingThresholdValue": 0,
+            "valueType": "relative"
+          },
+          "categoryOverrides": {},
+          "curve": "linear",
+          "pointsDisplay": "auto",
+          "categoricalBarChartSettings": {
+            "layout": "horizontal",
+            "categoryAxisTickLayout": "horizontal",
+            "scale": "absolute",
+            "groupMode": "stacked",
+            "colorPaletteMode": "multi-color",
+            "categoryAxis": ["user"],
+            "categoryAxisLabel": "user",
+            "valueAxis": ["count"],
+            "valueAxisLabel": "count",
+            "tooltipVariant": "single"
+          },
+          "colorPalette": "categorical",
+          "valueRepresentation": "absolute",
+          "truncationMode": "middle"
+        },
+        "singleValue": {
+          "showLabel": true,
+          "label": "jobs ran",
+          "prefixIcon": "",
+          "recordField": "count",
+          "autoscale": true,
+          "alignment": "center",
+          "trend": { "trendType": "auto", "isVisible": true },
+          "colorThresholdTarget": "value"
+        },
+        "table": {
+          "rowDensity": "condensed",
+          "enableSparklines": false,
+          "hiddenColumns": [],
+          "linewrapEnabled": false,
+          "lineWrapIds": [],
+          "monospacedFontEnabled": false,
+          "monospacedFontColumns": [],
+          "columnWidths": {},
+          "columnTypeOverrides": []
+        },
+        "honeycomb": {
+          "shape": "hexagon",
+          "legend": { "hidden": false, "position": "auto" },
+          "displayedFields": ["user"],
+          "dataMappings": { "value": "count" },
+          "truncationMode": "middle",
+          "colorMode": "color-palette",
+          "colorPalette": "blue"
+        },
+        "histogram": {
+          "legend": "auto",
+          "yAxis": { "label": "Frequency", "scale": "linear" },
+          "colorPalette": "categorical",
+          "dataMappings": [{ "valueAxis": "count", "rangeAxis": "" }],
+          "variant": "single",
+          "truncationMode": "middle",
+          "displayedFields": ["user"]
+        },
+        "autoSelectVisualization": false
+      },
+      "timeframe": { "tileTimeframeEnabled": false, "tileTimeframe": { "from": "now()-2h", "to": "now()" } },
+      "querySettings": {
+        "maxResultRecords": 1000,
+        "defaultScanLimitGbytes": 500,
+        "maxResultMegaBytes": 1,
+        "defaultSamplingRatio": 10,
+        "enableSampling": false
+      }
+    },
+    "5": {
+      "type": "data",
+      "title": "",
+      "query": "fetch bizevents\n| filter event.provider == \"bulk.settings.change\"\n| summarize total=sum(entitiesCount)",
+      "davis": { "enabled": false, "davisVisualization": { "isAvailable": true } },
+      "visualization": "singleValue",
+      "visualizationSettings": {
+        "thresholds": [],
+        "chartSettings": {
+          "xAxisScaling": "analyzedTimeframe",
+          "gapPolicy": "gap",
+          "circleChartSettings": {
+            "groupingThresholdType": "relative",
+            "groupingThresholdValue": 0,
+            "valueType": "relative"
+          },
+          "categoryOverrides": {},
+          "curve": "linear",
+          "pointsDisplay": "auto",
+          "categoricalBarChartSettings": {
+            "layout": "horizontal",
+            "categoryAxisTickLayout": "horizontal",
+            "scale": "absolute",
+            "groupMode": "stacked",
+            "colorPaletteMode": "multi-color",
+            "categoryAxis": ["total"],
+            "categoryAxisLabel": "total",
+            "valueAxis": ["total"],
+            "valueAxisLabel": "total",
+            "tooltipVariant": "single"
+          },
+          "colorPalette": "categorical",
+          "valueRepresentation": "absolute",
+          "truncationMode": "middle"
+        },
+        "singleValue": {
+          "showLabel": true,
+          "label": "Total Entities Changed",
+          "prefixIcon": "SmartscapeSignetIcon",
+          "recordField": "total",
+          "autoscale": true,
+          "alignment": "center",
+          "trend": { "trendType": "auto", "isVisible": true },
+          "colorThresholdTarget": "value",
+          "isIconVisible": true
+        },
+        "table": {
+          "rowDensity": "condensed",
+          "enableSparklines": false,
+          "hiddenColumns": [],
+          "linewrapEnabled": false,
+          "lineWrapIds": [],
+          "monospacedFontEnabled": false,
+          "monospacedFontColumns": [],
+          "columnWidths": {},
+          "columnTypeOverrides": []
+        },
+        "honeycomb": {
+          "shape": "hexagon",
+          "legend": { "hidden": false, "position": "auto" },
+          "displayedFields": [],
+          "dataMappings": {},
+          "truncationMode": "middle",
+          "colorMode": "color-palette",
+          "colorPalette": "categorical"
+        },
+        "histogram": {
+          "legend": "auto",
+          "yAxis": { "label": "Frequency", "scale": "linear" },
+          "colorPalette": "categorical",
+          "dataMappings": [{ "valueAxis": "total", "rangeAxis": "" }],
+          "variant": "single",
+          "truncationMode": "middle",
+          "displayedFields": []
+        },
+        "autoSelectVisualization": false,
+        "unitsOverrides": [
+          {
+            "identifier": "total",
+            "unitCategory": "unspecified",
+            "baseUnit": "none",
+            "displayUnit": null,
+            "decimals": 0,
+            "suffix": "",
+            "delimiter": false,
+            "added": 1738006042386
+          }
+        ]
+      },
+      "querySettings": {
+        "maxResultRecords": 1000,
+        "defaultScanLimitGbytes": 500,
+        "maxResultMegaBytes": 1,
+        "defaultSamplingRatio": 10,
+        "enableSampling": false
+      }
+    },
+    "6": {
+      "type": "data",
+      "title": "Distinct Entities Changed",
+      "query": "fetch bizevents\n| filter event.provider == \"bulk.settings.change\"\n| parse entities, \"JSON_ARRAY:entities\"\n| expand entities\n| summarize distinctEntities=collectDistinct(entities), by:{schema}\n| expand distinctEntities \n| fields schema, name=distinctEntities[displayName], id=distinctEntities[entityId]\n| summarize schemas=collectDistinct(schema), by:{name,id}\n| sort name asc",
+      "davis": { "enabled": false, "davisVisualization": { "isAvailable": true } },
+      "visualization": "table",
+      "visualizationSettings": {
+        "thresholds": [],
+        "chartSettings": {
+          "xAxisScaling": "analyzedTimeframe",
+          "gapPolicy": "gap",
+          "circleChartSettings": {
+            "groupingThresholdType": "relative",
+            "groupingThresholdValue": 0,
+            "valueType": "relative"
+          },
+          "categoryOverrides": {},
+          "curve": "linear",
+          "pointsDisplay": "auto",
+          "categoricalBarChartSettings": {
+            "layout": "horizontal",
+            "categoryAxisTickLayout": "horizontal",
+            "scale": "absolute",
+            "groupMode": "stacked",
+            "colorPaletteMode": "multi-color",
+            "categoryAxis": ["name", "id"],
+            "valueAxis": [],
+            "categoryAxisLabel": "name,id",
+            "valueAxisLabel": "",
+            "tooltipVariant": "single"
+          },
+          "colorPalette": "categorical",
+          "valueRepresentation": "absolute",
+          "truncationMode": "middle"
+        },
+        "singleValue": {
+          "showLabel": true,
+          "label": "entities",
+          "prefixIcon": "",
+          "recordField": "entities",
+          "autoscale": true,
+          "alignment": "center",
+          "trend": { "trendType": "auto", "isVisible": true },
+          "colorThresholdTarget": "value"
+        },
+        "table": {
+          "rowDensity": "condensed",
+          "enableSparklines": false,
+          "hiddenColumns": [],
+          "linewrapEnabled": false,
+          "lineWrapIds": [],
+          "monospacedFontEnabled": false,
+          "monospacedFontColumns": [],
+          "columnWidths": { "[\"schema\"]": 369.0625 },
+          "columnTypeOverrides": [],
+          "sortBy": { "columnId": "[\"name\"]", "direction": "ascending" }
+        },
+        "honeycomb": {
+          "shape": "hexagon",
+          "legend": { "hidden": false, "position": "auto" },
+          "displayedFields": ["name", "id"],
+          "dataMappings": { "value": "name" },
+          "truncationMode": "middle",
+          "colorMode": "color-palette",
+          "colorPalette": "categorical"
+        },
+        "histogram": {
+          "legend": "auto",
+          "yAxis": { "label": "Frequency", "scale": "linear" },
+          "colorPalette": "categorical",
+          "dataMappings": [],
+          "variant": "single",
+          "truncationMode": "middle",
+          "displayedFields": ["name", "id"]
+        },
+        "autoSelectVisualization": false
+      },
+      "querySettings": {
+        "maxResultRecords": 1000,
+        "defaultScanLimitGbytes": 500,
+        "maxResultMegaBytes": 1,
+        "defaultSamplingRatio": 10,
+        "enableSampling": false
+      }
+    },
+    "7": {
+      "type": "data",
+      "title": "By Entity Type",
+      "query": "fetch bizevents\n| filter event.provider == \"bulk.settings.change\"\n| parse entities, \"JSON_ARRAY:entities\"\n| parse entitySelector, \"'type(' LD:entityType ')'\"\n| expand entities\n| summarize distinctEntities=collectDistinct(entities), by:{schema, entityType}\n| expand distinctEntities \n| fields schema, name=distinctEntities[displayName], id=distinctEntities[entityId], entityType\n| summarize count=count(), by:{entityType}",
+      "davis": { "enabled": false, "davisVisualization": { "isAvailable": true } },
+      "visualization": "pieChart",
+      "visualizationSettings": {
+        "thresholds": [],
+        "chartSettings": {
+          "xAxisScaling": "analyzedTimeframe",
+          "gapPolicy": "gap",
+          "circleChartSettings": {
+            "groupingThresholdType": "relative",
+            "groupingThresholdValue": 0,
+            "valueType": "relative"
+          },
+          "categoryOverrides": {},
+          "curve": "linear",
+          "pointsDisplay": "auto",
+          "categoricalBarChartSettings": {
+            "layout": "horizontal",
+            "categoryAxisTickLayout": "horizontal",
+            "scale": "absolute",
+            "groupMode": "stacked",
+            "colorPaletteMode": "multi-color",
+            "categoryAxis": ["entityType"],
+            "categoryAxisLabel": "entityType",
+            "valueAxis": ["count"],
+            "valueAxisLabel": "count",
+            "tooltipVariant": "single"
+          },
+          "colorPalette": "categorical",
+          "valueRepresentation": "absolute",
+          "truncationMode": "middle"
+        },
+        "singleValue": {
+          "showLabel": true,
+          "label": "entityType",
+          "prefixIcon": "",
+          "recordField": "entityType",
+          "autoscale": true,
+          "alignment": "center",
+          "trend": { "trendType": "auto", "isVisible": true },
+          "colorThresholdTarget": "value"
+        },
+        "table": {
+          "rowDensity": "condensed",
+          "enableSparklines": false,
+          "hiddenColumns": [],
+          "linewrapEnabled": false,
+          "lineWrapIds": [],
+          "monospacedFontEnabled": false,
+          "monospacedFontColumns": [],
+          "columnWidths": {},
+          "columnTypeOverrides": []
+        },
+        "honeycomb": {
+          "shape": "hexagon",
+          "legend": { "hidden": false, "position": "auto" },
+          "displayedFields": ["entityType"],
+          "dataMappings": { "value": "count" },
+          "truncationMode": "middle",
+          "colorMode": "color-palette",
+          "colorPalette": "blue"
+        },
+        "histogram": {
+          "legend": "auto",
+          "yAxis": { "label": "Frequency", "scale": "linear" },
+          "colorPalette": "categorical",
+          "dataMappings": [{ "valueAxis": "count", "rangeAxis": "" }],
+          "variant": "single",
+          "truncationMode": "middle",
+          "displayedFields": ["entityType"]
+        },
+        "autoSelectVisualization": false
+      },
+      "querySettings": {
+        "maxResultRecords": 1000,
+        "defaultScanLimitGbytes": 500,
+        "maxResultMegaBytes": 1,
+        "defaultSamplingRatio": 10,
+        "enableSampling": false
+      }
+    },
+    "8": {
+      "type": "data",
+      "title": "",
+      "query": "fetch bizevents\n| filter event.provider == \"bulk.settings.change\"\n| summarize users=countDistinct(user)",
+      "davis": { "enabled": false, "davisVisualization": { "isAvailable": true } },
+      "visualization": "singleValue",
+      "visualizationSettings": {
+        "thresholds": [],
+        "chartSettings": {
+          "xAxisScaling": "analyzedTimeframe",
+          "gapPolicy": "gap",
+          "circleChartSettings": {
+            "groupingThresholdType": "relative",
+            "groupingThresholdValue": 0,
+            "valueType": "relative"
+          },
+          "categoryOverrides": {},
+          "curve": "linear",
+          "pointsDisplay": "auto",
+          "categoricalBarChartSettings": {
+            "layout": "horizontal",
+            "categoryAxisTickLayout": "horizontal",
+            "scale": "absolute",
+            "groupMode": "stacked",
+            "colorPaletteMode": "multi-color",
+            "categoryAxis": ["users"],
+            "categoryAxisLabel": "users",
+            "valueAxis": ["users"],
+            "valueAxisLabel": "users",
+            "tooltipVariant": "single"
+          },
+          "colorPalette": "categorical",
+          "valueRepresentation": "absolute",
+          "truncationMode": "middle"
+        },
+        "singleValue": {
+          "showLabel": true,
+          "label": "Users",
+          "prefixIcon": "AccountFilledIcon",
+          "recordField": "users",
+          "autoscale": true,
+          "alignment": "center",
+          "trend": { "trendType": "auto", "isVisible": true },
+          "colorThresholdTarget": "value",
+          "isIconVisible": true
+        },
+        "table": {
+          "rowDensity": "condensed",
+          "enableSparklines": false,
+          "hiddenColumns": [],
+          "linewrapEnabled": false,
+          "lineWrapIds": [],
+          "monospacedFontEnabled": false,
+          "monospacedFontColumns": [],
+          "columnWidths": {},
+          "columnTypeOverrides": []
+        },
+        "honeycomb": {
+          "shape": "hexagon",
+          "legend": { "hidden": false, "position": "auto" },
+          "displayedFields": [],
+          "dataMappings": {},
+          "truncationMode": "middle",
+          "colorMode": "color-palette",
+          "colorPalette": "blue"
+        },
+        "histogram": {
+          "legend": "auto",
+          "yAxis": { "label": "Frequency", "scale": "linear" },
+          "colorPalette": "categorical",
+          "dataMappings": [{ "valueAxis": "users", "rangeAxis": "" }],
+          "variant": "single",
+          "truncationMode": "middle",
+          "displayedFields": []
+        },
+        "autoSelectVisualization": false
+      },
+      "timeframe": { "tileTimeframeEnabled": false, "tileTimeframe": { "from": "now()-2h", "to": "now()" } },
+      "querySettings": {
+        "maxResultRecords": 1000,
+        "defaultScanLimitGbytes": 500,
+        "maxResultMegaBytes": 1,
+        "defaultSamplingRatio": 10,
+        "enableSampling": false
+      }
+    }
+  },
+  "layouts": {
+    "0": { "x": 0, "y": 0, "w": 5, "h": 5 },
+    "1": { "x": 0, "y": 15, "w": 24, "h": 5 },
+    "2": { "x": 5, "y": 0, "w": 18, "h": 5 },
+    "3": { "x": 8, "y": 5, "w": 4, "h": 6 },
+    "4": { "x": 17, "y": 5, "w": 4, "h": 6 },
+    "5": { "x": 0, "y": 5, "w": 4, "h": 6 },
+    "6": { "x": 0, "y": 11, "w": 24, "h": 4 },
+    "7": { "x": 4, "y": 5, "w": 4, "h": 6 },
+    "8": { "x": 13, "y": 5, "w": 4, "h": 6 }
+  },
+  "importedWithCode": false,
+  "settings": {
+    "gridLayout": { "mode": "responsive" },
+    "defaultTimeframe": { "value": { "from": "now()@d", "to": "now()" }, "enabled": true }
+  }
+}
